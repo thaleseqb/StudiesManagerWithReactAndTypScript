@@ -28,7 +28,9 @@ class Form extends React.Component {
                     max="00:01:30"
                     required />
                 </div>
-                <Button/>
+                <Button>
+                    Adicionar
+                </Button>
             </form>
         )
     }
