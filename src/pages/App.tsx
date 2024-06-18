@@ -14,7 +14,23 @@ function App() {
     setTasks(olderTasks => olderTasks.map(task => ({
       ...task,
       selected: task.id === selectedTask.id? true : false
-    })))
+    })));
+  }
+
+  function finishTask() {
+    if (selected) {
+      setSelected(undefined);
+      setTasks(olderTasks => olderTasks.map(task => {
+        if (task.id) {
+          return {
+            ...task,
+            selected:false,
+            completed:true
+          }
+        }
+        return task;
+      }))
+    }
   }
 
   return (
@@ -24,7 +40,9 @@ function App() {
         tasks={tasks}
         selectTask={selectTask} 
       />
-      <Chronometer selected={selected} />
+      <Chronometer 
+        selected={selected} 
+        finishTask={finishTask}/>
     </div>
   );
 }
